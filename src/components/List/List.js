@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ListItem from './ListItem';
 
 const List = () => {
   const [products, setProducts] = useState([]);
@@ -33,8 +34,22 @@ const List = () => {
     lists.push(products);
   });
 
-
-  return <div>List</div>;
+  return (
+    <div className="grid grid-cols-3 gap-8 py-5">
+      <div className='grid grid-cols-2 col-span-2 gap-5 px-4 max-h-[700px] overflow-y-auto py-4'>
+        {lists.map((list) => (
+          <ListItem
+            key={list.id}
+            id={list.id}
+            name={list.name}
+            description={list.description}
+            price={list.unit_price}
+          />
+        ))}
+      </div>
+      <div>List</div>
+    </div>
+  );
 };
 
 export default List;
