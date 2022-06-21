@@ -42,6 +42,9 @@ const cartSlice = createSlice({
       const filterItem = state.items.filter((item) => item.id !== id);
       state.items = filterItem;
     },
+    removeAllItemFromCart(state) {
+      state.items = [];
+    },
   },
 });
 
@@ -51,7 +54,7 @@ const store = configureStore({
   },
 });
 
-export const { addToCart, removeFromCart, removeWholeItemFromCart } =
+export const { addToCart, removeFromCart, removeWholeItemFromCart,removeAllItemFromCart } =
   cartSlice.actions;
 
 export default store;

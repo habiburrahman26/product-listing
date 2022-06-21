@@ -51,16 +51,17 @@ const List = () => {
     return <p>Loading...</p>;
   }
 
+
   return (
     <div className="grid grid-cols-3 gap-8 py-5">
       <div className="grid grid-cols-2 col-span-2 gap-5 px-4 max-h-[700px] overflow-y-auto py-4">
-        {lists.map((list) => (
+        {lists?.map((list) => (
           <ListItem
-            key={list.id}
-            id={list.id}
-            name={list.name}
-            description={list.description}
-            price={list.price}
+            key={list?.id}
+            id={list?.id}
+            name={list?.name}
+            description={list?.description}
+            price={list?.price}
           />
         ))}
       </div>

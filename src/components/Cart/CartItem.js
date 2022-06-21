@@ -22,7 +22,7 @@ const CartItem = ({ sl, id, name, price, unitPrice, quantity }) => {
   };
 
   return (
-    <tr className="">
+    <tr>
       <td>{sl}</td>
       <td className="text-sm" title={name}>
         {name.length > 15 ? name.slice(0, 15) : name}
