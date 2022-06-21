@@ -3,11 +3,10 @@ import Cart from '../Cart/Cart';
 import ListItem from './ListItem';
 
 const List = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [inventroys, setInventorys] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  // const [lists, setLists] = useState([]);
-  const lists = [];
+  const [lists, setLists] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -29,17 +28,24 @@ const List = () => {
       });
   }, []);
 
-  products?.forEach((p) => {
-    const list = inventroys?.find((i) => i.product_id === p.id);
-    const products = {
-      id: list.id,
-      name: p.name,
-      description: p.description,
-      price: list.unit_price,
-    };
+  useEffect(() => {
+    if (products.length > 0 || inventroys.length > 0) {
+      products?.forEach((p) => {
+        const list = inventroys?.find((i) => i.product_id === p.id);
+        const product = {
+          id: list.id,
+          name: p.name,
+          description: p.description,
+          price: list.unit_price,
+        };
 
-    lists.push(products);
-  });
+        const existingItem = lists.find((i) => i.id === product.id);
+        if (!existingItem) {
+          setLists((prevState) => [...prevState, product]);
+        }
+      });
+    }
+  }, [products, inventroys, lists]);
 
   if (isLoading) {
     return <p>Loading...</p>;

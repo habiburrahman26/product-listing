@@ -1,27 +1,31 @@
 import React from 'react';
-import {useDispatch} from 'react-redux'
-import { addToCart, removeFromCart, removeWholeItemFromCart } from '../../Store';
+import { useDispatch } from 'react-redux';
+import {
+  addToCart,
+  removeFromCart,
+  removeWholeItemFromCart,
+} from '../../Store';
 
-const CartItem = ({ sl, id, name, price, quantity }) => {
-    const dispatch = useDispatch();
+const CartItem = ({ sl, id, name, price, unitPrice, quantity }) => {
+  const dispatch = useDispatch();
 
   const increaseQuantityHandler = (id) => {
-    dispatch(addToCart({id,name,quantity:1,price}))
+    dispatch(addToCart({ id, name, quantity: 1, price: unitPrice }));
   };
 
   const decreaseQuantityHandler = (id) => {
-    dispatch(removeFromCart(id))
+    dispatch(removeFromCart(id));
   };
 
   const removeItem = (id) => {
-    dispatch(removeWholeItemFromCart(id))
+    dispatch(removeWholeItemFromCart(id));
   };
 
   return (
     <tr className="">
       <td>{sl}</td>
       <td className="text-sm" title={name}>
-        {name.length > 20 ? name.slice(0, 20) : name}
+        {name.length > 15 ? name.slice(0, 15) : name}
       </td>
       <td className="flex gap-2 text-sm">
         <button className="" onClick={() => decreaseQuantityHandler(id)}>
