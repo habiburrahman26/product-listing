@@ -1,8 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../Store';
 
 const ListItem = ({ id, name, description, price }) => {
+  const dispatch = useDispatch();
+
   const addToCartHandler = (id, name, price) => {
-    console.log(id, name, price);
+    dispatch(addToCart({ id, name, price, quantity: 1 }));
   };
 
   return (
@@ -11,7 +15,7 @@ const ListItem = ({ id, name, description, price }) => {
         150 X 150
       </div>
       <div className="text-left">
-        <h3 className="font-semibold text-base">{name}</h3>
+        <h3 className="font-semibold text-base mb-4">{name}</h3>
         <p className="text-xs">{description}</p>
       </div>
       <div className="self-end ">

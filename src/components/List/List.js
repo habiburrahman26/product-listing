@@ -41,7 +41,6 @@ const List = () => {
     lists.push(products);
   });
 
-
   if (isLoading) {
     return <p>Loading...</p>;
   }
