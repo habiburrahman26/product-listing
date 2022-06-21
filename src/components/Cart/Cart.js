@@ -16,7 +16,7 @@ const Cart = () => {
   }, 0);
 
   return (
-    <div className="p-6 px-3 bg-gray-100 h-[700px] mr-4 overflow-y-auto relative">
+    <div className="p-6 px-3 bg-gray-100 h-[600px] mr-4 overflow-y-auto relative">
       <p className="text-left text-sm">List of item have been selected</p>
       <table className="table-auto border-spacing-6 border-separate">
         <thead>
@@ -43,7 +43,7 @@ const Cart = () => {
       </table>
       <div>
         <hr />
-        <p className="text-right">Total: {totalPrice}</p>
+        <p className="text-right mt-4">Total: {totalPrice}</p>
       </div>
       <div className="absolute bottom-5 left-1/2 mt-6">
         <button

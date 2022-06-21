@@ -52,7 +52,7 @@ const Overlay = ({ showModal, setShowModal, totalPrice }) => {
             <p className="text-center text-gray-500 mb-4">
               Items below will be confirmd
             </p>
-            <table className="table-auto border-spacing-2 border-separate">
+            <table className="w-full table-auto border-spacing-2 border-separate flex justify-center">
               <thead>
                 <tr>
                   <th>Items</th>

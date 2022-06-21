@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Cart from '../Cart/Cart';
 import ListItem from './ListItem';
 
-const List = () => {
+const List = ({ search }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [inventroys, setInventorys] = useState([]);
@@ -33,10 +33,10 @@ const List = () => {
       products?.forEach((p) => {
         const list = inventroys?.find((i) => i.product_id === p.id);
         const product = {
-          id: list.id,
-          name: p.name,
-          description: p.description,
-          price: list.unit_price,
+          id: list?.id,
+          name: p?.name,
+          description: p?.description,
+          price: list?.unit_price,
         };
 
         const existingItem = lists.find((i) => i.id === product.id);
@@ -48,20 +48,23 @@ const List = () => {
   }, [products, inventroys, lists]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="px-4 pt-4">Loading...</p>;
   }
 
+  const productsList = lists.filter((i) =>
+    i?.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className="grid grid-cols-3 gap-8 py-5">
-      <div className="grid grid-cols-2 col-span-2 gap-5 px-4 max-h-[700px] overflow-y-auto py-4">
-        {lists?.map((list) => (
+      <div className="grid grid-cols-2 col-span-2 gap-5 px-4 max-h-[600px] overflow-y-auto py-4">
+        {productsList?.map((list) => (
           <ListItem
-            key={list?.id}
-            id={list?.id}
-            name={list?.name}
-            description={list?.description}
-            price={list?.price}
+            key={list.id}
+            id={list.id}
+            name={list.name}
+            description={list.description}
+            price={list.price}
           />
         ))}
       </div>
